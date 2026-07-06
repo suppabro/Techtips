@@ -1,9 +1,7 @@
 // ===============================
 // TechVerse Script
-// Version 1.0
 // ===============================
 
-// Welcome Message
 console.log("🚀 Welcome to TechVerse");
 
 // -------------------------------
@@ -13,45 +11,55 @@ console.log("🚀 Welcome to TechVerse");
 const searchInput = document.querySelector(".search");
 
 if (searchInput) {
-  searchInput.addEventListener("keyup", function () {
+    searchInput.addEventListener("keyup", function () {
 
-    let value = this.value.toLowerCase();
+        const value = this.value.toLowerCase();
 
-    let lessons = document.querySelectorAll(".lesson");
+        const lessons = document.querySelectorAll(".lesson");
 
-    lessons.forEach((lesson) => {
+        lessons.forEach((lesson) => {
 
-      let text = lesson.innerText.toLowerCase();
+            const text = lesson.innerText.toLowerCase();
 
-      if (text.includes(value)) {
-        lesson.style.display = "block";
-      } else {
-        lesson.style.display = "none";
-      }
+            if (text.includes(value)) {
+                lesson.style.display = "block";
+            } else {
+                lesson.style.display = "none";
+            }
+
+        });
 
     });
-
-  });
 }
 
 // -------------------------------
-// Read More Buttons
+// Open Lesson Pages
 // -------------------------------
+
+const lessonIds = [
+    "esim",
+    "nfc",
+    "refresh",
+    "gorilla",
+    "androidgo",
+    "amoled"
+];
 
 const buttons = document.querySelectorAll(".lesson button");
 
-buttons.forEach(button => {
+buttons.forEach((button, index) => {
 
     button.addEventListener("click", () => {
 
-        alert("🚧 Lesson page is coming soon!");
+        window.location.href =
+            "lesson.html?id=" + lessonIds[index];
 
     });
 
 });
 
 // -------------------------------
-// Card Hover Animation
+// Card Animation
 // -------------------------------
 
 const cards = document.querySelectorAll(".card");
@@ -59,31 +67,27 @@ const cards = document.querySelectorAll(".card");
 cards.forEach(card => {
 
     card.addEventListener("mouseenter", () => {
-
-        card.style.transform = "translateY(-10px) scale(1.03)";
-
+        card.style.transform = "translateY(-10px)";
     });
 
     card.addEventListener("mouseleave", () => {
-
-        card.style.transform = "translateY(0px) scale(1)";
-
+        card.style.transform = "translateY(0px)";
     });
 
 });
 
 // -------------------------------
-// Smooth Fade Animation
+// Scroll Animation
 // -------------------------------
 
-const observer = new IntersectionObserver(entries => {
+const observer = new IntersectionObserver((entries) => {
 
     entries.forEach(entry => {
 
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
 
-            entry.target.style.opacity="1";
-            entry.target.style.transform="translateY(0px)";
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0px)";
 
         }
 
@@ -91,25 +95,25 @@ const observer = new IntersectionObserver(entries => {
 
 });
 
-document.querySelectorAll(".lesson,.card").forEach(el=>{
+document.querySelectorAll(".lesson,.card").forEach((el) => {
 
-    el.style.opacity="0";
-    el.style.transform="translateY(40px)";
-    el.style.transition=".6s";
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.transition = "0.6s";
 
     observer.observe(el);
 
 });
 
 // -------------------------------
-// Footer Year
+// Footer
 // -------------------------------
 
 const footer = document.querySelector("footer");
 
-if(footer){
+if (footer) {
 
-footer.innerHTML =
-`© ${new Date().getFullYear()} TechVerse • Created by Supun - Rathnapura`;
+    footer.innerHTML =
+        `© ${new Date().getFullYear()} TechVerse • Created by Supun - Rathnapura`;
 
 }
